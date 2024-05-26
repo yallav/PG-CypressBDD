@@ -72,7 +72,7 @@ This section demonstrates to setup required depenencies such as Cucumber, mocha 
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     charts: true,
-    reportPageTitle: "My HTML Test Report",
+    reportPageTitle: "HTML Test Report",
   },
 
   ```
