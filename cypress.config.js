@@ -13,6 +13,6 @@ module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,
-    reportPageTitle: 'My HTML Test Report',
+    reportPageTitle: 'HTML Test Report',
   },
 });

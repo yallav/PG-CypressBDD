@@ -87,3 +87,4 @@ This section demonstrates to setup required depenencies such as Cucumber, mocha 
 
 1. An error was thrown in your plugins file while executing the handler for the after:run event
    ![alt text](/documentation/image-7.png)
+   solution found at - https://github.com/cypress-io/cypress/discussions/21099
