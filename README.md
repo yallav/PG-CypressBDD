@@ -28,7 +28,7 @@ This project is created to demonstrate setup of Cucumber BDD in Cypress and POM 
 
 This section demonstrates to setup required depenencies such as Cucumber, mocha test reports and XPath plugins
 
-### Cucumber preprocessor
+### Cucumber preprocessor plugin
 
 Go to npm [dependency manager](https://www.npmjs.com/package/cypress-cucumber-preprocessor) and follow the steps as documented
 
@@ -57,7 +57,7 @@ e2e: {
 }
 ```
 
-### Mocha awesome test report
+### Mocha awesome test report plugin
 
 Go to npm [dependency manager](https://www.npmjs.com/package/cypress-mochawesome-reporter) and follow the steps as documented
 
@@ -87,7 +87,7 @@ reporterOptions: {
 import 'cypress-mochawesome-reporter/register';
 ```
 
-### Cypress XPath plaugin
+### Cypress XPath plugin
 
 Cypress doesn't have default support for XPtah queries, hence we need to add npm plugin by following the documentation -https://www.npmjs.com/package/cypress-xpath
 
@@ -97,6 +97,16 @@ Cypress doesn't have default support for XPtah queries, hence we need to add npm
 
 ```
 require('cypress-xpath');
+```
+
+## Execution
+
+Follow the steps to download and execute the cypress tests
+
+```
+1. Clone the project - git clone https://github.com/yallav/PG-CypressBDD.git
+2. Go inside the project root directory and install project dependencies - npm install
+3. Open the command prompt at the project root directory and execute the following command - npx cypress open or npx cypress run
 ```
 
 ## Challenges
