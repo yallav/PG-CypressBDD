@@ -28,60 +28,76 @@ This project is created to demonstrate setup of Cucumber BDD in Cypress and POM 
 
 This section demonstrates to setup required depenencies such as Cucumber, mocha test reports and XPath plugins
 
-- Cucumber preprocessor
-  Go to npm [dependency manager](https://www.npmjs.com/package/cypress-cucumber-preprocessor) and follow the steps as documented
+### Cucumber preprocessor
 
-  1. Install the plugin - npm install --save-dev cypress-cucumber-preprocessor
-  2. Add the following statements to cypress-config.js file
+Go to npm [dependency manager](https://www.npmjs.com/package/cypress-cucumber-preprocessor) and follow the steps as documented
 
-  ```
-  const cucumber = require('cypress-cucumber-preprocessor').default
-  e2e: {
-    specPattern: 'cypress/e2e/features/*.feature',
+1. Install the plugin - npm install --save-dev cypress-cucumber-preprocessor
+
+2. Add the following statements to cypress-config.js file
+
+```
+const cucumber = require('cypress-cucumber-preprocessor').default
+e2e: {
+  specPattern: 'cypress/e2e/features/*.feature',
+  setupNodeEvents(on, config) {
+    // implement node event listeners here
+    on('file:preprocessor', cucumber());
+  },
+},
+
+```
+
+3.Add the following in package.json file
+
+```
+"cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/e2e/features/"
+}
+```
+
+### Mocha awesome test report
+
+Go to npm [dependency manager](https://www.npmjs.com/package/cypress-mochawesome-reporter) and follow the steps as documented
+
+1. Install the plugin - npm i --save-dev cypress-mochawesome-reporter
+
+2. Add the following statement to cypress.config.js
+
+```
+e2e{
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-      on('file:preprocessor', cucumber());
-    },
+    // implement node event listeners here
+    require('cypress-mochawesome-reporter/plugin')(on);
   },
+}
 
-  ```
+reporter: "cypress-mochawesome-reporter",
+reporterOptions: {
+  charts: true,
+  reportPageTitle: "HTML Test Report",
+},
 
-  3.Add the following in package.json file
+```
 
-  ```
-  "cypress-cucumber-preprocessor": {
-      "nonGlobalStepDefinitions": true,
-      "stepDefinitions": "cypress/e2e/features/"
-  }
-  ```
+3.Add the import statement in cypress\support\e2e.js
 
-- Mocha awesome test report
-  Go to npm [dependency manager](https://www.npmjs.com/package/cypress-mochawesome-reporter) and follow the steps as documented
+```
+import 'cypress-mochawesome-reporter/register';
+```
 
-  1. Install the plugin - npm i --save-dev cypress-mochawesome-reporter
-  2. Add the following statement to cypress.config.js
+### Cypress XPath plaugin
 
-  ```
-  e2e{
-      setupNodeEvents(on, config) {
-      // implement node event listeners here
-      require('cypress-mochawesome-reporter/plugin')(on);
-    },
-  }
+Cypress doesn't have default support for XPtah queries, hence we need to add npm plugin by following the documentation -https://www.npmjs.com/package/cypress-xpath
 
-  reporter: "cypress-mochawesome-reporter",
-  reporterOptions: {
-    charts: true,
-    reportPageTitle: "HTML Test Report",
-  },
+1. Install the plugin - npm install -D cypress-xpath
 
-  ```
+2. Add the following entry in cypress/support/e2e.js file
 
-  3.Add the import statement in cypress\support\e2e.js
-
-  ```
-  import 'cypress-mochawesome-reporter/register';
-  ```
+```
+require('cypress-xpath');
+```
 
 ## Challenges
 
